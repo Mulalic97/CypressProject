@@ -1,20 +1,10 @@
+const RandExp = require('randexp');
 
 export function emailGenerator(){
-   let email ="";
-   let chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
-   let length = 8;
-   for(let i =0; i<=length; i++){
-      email += chars[Math.floor(Math.random() * chars.length)];
-   }
-   return email + '@mailinator.com';
+   return new RandExp(/^[a-z0-9._+-]{1,20}@[a-z0-9]{3,15}\.[a-z]{2,4}$/).gen()
 }
 
+
 export function passwordGenerator() {
-   let length = 8,
-       charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-       password = "";
-   for (let i = 0, n = charset.length; i < length; ++i) {
-      password+= charset.charAt(Math.floor(Math.random() * n));
-   }
-   return password;
+   return new RandExp(/^[-+]?[0-9]{0,16}(\.[0-9]{1,6})?$/).gen()
 }
