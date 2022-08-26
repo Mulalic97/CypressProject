@@ -43,4 +43,10 @@ export function userRegister(name, lastName, number, email, password){
 
     cy.get('#MainContent_ConfirmPassword')
         .type(password)
+
+    cy.get('#CheckPolicies')
+        .check()
+
+    cy.get('#MainContent_RegisterButton')
+        .click()
 }
