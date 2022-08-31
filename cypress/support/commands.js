@@ -23,6 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const Base = Cypress.env('BASE_URL')
+const User = Cypress.env('USER_CREDENTIALS')
 
 export function userRegister(name, lastName, number, email, password){
 
@@ -49,4 +51,17 @@ export function userRegister(name, lastName, number, email, password){
 
     cy.get('#MainContent_RegisterButton')
         .click()
+}
+
+export function userLogIn() {
+    cy.visit(`${Base}/account/login`)
+    cy.get('.cc-btn').click();
+    cy.get('#MainContent_Email').type(User.email)
+    cy.get('#MainContent_Password').type(User.password)
+    cy.get('#MainContent_LoginButton').click()
+    if (cy.get('#MainContent_createInbox').should('not.exist')) {
+        cy.get("a[href='/account/dashboard']").should("be.visible")
+    } else {
+        cy.get('#MainContent_createInbox').should('be.visible').click()
+    }
 }
