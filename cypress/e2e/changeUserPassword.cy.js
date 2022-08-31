@@ -1,18 +1,18 @@
+import {emailGenerator, passwordGenerator} from "../support/helper";
+
 const RandExp = require("randexp");
-import {userLogIn} from "../support/commands";
+import {userRegister} from "../support/commands";
 
-let currentPassword = new passwordHandler()
-
-const passwordHandler = () => {
-
-    return new RandExp(/^[a-zA-Z0-9_/!@#$%^&*()+={}><.,~`?"':;]{16}$/gi).gen()
-}
+const email = emailGenerator()
+const currentPassword = passwordGenerator();
+const newPassword = passwordGenerator();
 
 it('User Changes Password', () => {
 
-userLogIn()
-    cy.get('#settings').click()
-    cy.get('#MainContent_CurrentPassword').clear().type(passwordHandler())
-    console.log(currentPassword);
+    userRegister("Mustafa", "Mulalic", "242525", email, currentPassword)
+   // cy.get('#settings').click()
+    //cy.get('#MainContent_CurrentPassword').clear().type(currentPassword)
+    //cy.get('#MainContent_NewPassword').clear().type(newPassword)
+
 
 })

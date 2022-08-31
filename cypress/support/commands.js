@@ -28,6 +28,10 @@ const User = Cypress.env('USER_CREDENTIALS')
 
 export function userRegister(name, lastName, number, email, password){
 
+    cy.visit(`${Base}account/register`)
+
+    cy.get('.cc-btn').click();
+
     cy.get('#MainContent_firstName')
         .type(name)
 
@@ -51,7 +55,10 @@ export function userRegister(name, lastName, number, email, password){
 
     cy.get('#MainContent_RegisterButton')
         .click()
-}
+
+    cy.get('#MainContent_createInbox').should('be.visible').click()
+    }
+
 
 export function userLogIn() {
     cy.visit(`${Base}/account/login`)
