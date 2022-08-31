@@ -1,5 +1,5 @@
-import {userRegister} from "../../support/commands";
-import {emailGenerator, passwordGenerator} from "../../support/helper";
+import {userRegister} from "../support/commands";
+import {emailGenerator, passwordGenerator} from "../support/helper";
 
 const Base = Cypress.env('BASE_URL')
 const email = emailGenerator()
